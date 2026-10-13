@@ -1,0 +1,6 @@
+{
+  "name": "@ebira/retire-interior",
+  "private": true,
+  "type": "commonjs",
+  "main": "interior.js"
+}
