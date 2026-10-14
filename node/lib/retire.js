@@ -1,6 +1,9 @@
 /*
  * This file is used by the browser plugins and the Cli scanner and thus
  * cannot have any external dependencies (no require)
+ *
+ * Modified by the Ebira fork to publish the browser-compatible exports object
+ * explicitly when this file is bundled as a CommonJS module.
  */
 
 var exports = exports || {};
@@ -197,3 +200,10 @@ exports.scanFileContent = function (content, repo, hasher) {
 };
 
 exports.isAtOrAbove = isAtOrAbove;
+
+// `var exports = exports || {}` is valid in Node's CommonJS wrapper, but some
+// bundlers detach that local object from `module.exports`. Keep browser usage
+// unchanged while making the CommonJS contract explicit for Forge/esbuild.
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = exports;
+}

@@ -8,7 +8,8 @@
  */
 
 const crypto = require('node:crypto');
-const retire = require('../node/lib/retire.js');
+const retireModule = require('../node/lib/retire.js');
+const retire = retireModule.default || retireModule;
 const repositoryTemplate = require('../repository/jsrepository-v6.json');
 const bundledRepository = JSON.parse(retire.replaceVersion(JSON.stringify(repositoryTemplate)));
 
